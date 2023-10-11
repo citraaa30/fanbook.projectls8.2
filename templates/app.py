@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 
-client = MongoClient('mongodb+srv://<username>:sparta@cluster0.9gwoc1a.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp')
+client = MongoClient('mongodb+srv://citra210170063:sparta@cluster0.t6kqrar.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
 app = Flask(__name__)
@@ -25,7 +25,7 @@ def bucket_post():
 
 @app.route("/bucket/done", methods=["POST"])
 def bucket_done():
- num_receive = request.form['num_give']
+    num_receive = request.form['num_give']
     db.bucket.update_one(
         {'num': int(num_receive)},
         {'$set': {'done': 1}}
